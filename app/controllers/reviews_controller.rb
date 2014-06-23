@@ -9,10 +9,10 @@ class ReviewsController < ApplicationController
     @review.restaurant = @restaurant
     if @review.save
       flash[:notice] = "Review saved!"
-      redirect_to @restaurant
+      redirect_to restaurant_path(@restaurant)
     else
       flash.now[:notice] = "Invalid input!  Please try again."
-      redirect_to @restaurant
+      render 'restaurants/show'
     end
   end
 
