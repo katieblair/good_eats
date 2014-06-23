@@ -1,0 +1,25 @@
+<h1><%= @restaurant.name %></h1>
+
+<div><%= @restaurant.address %>, <%= @restaurant.city %>, <%= @restaurant.state %> <% @restaurant.zip %></div>
+
+<div><%= @restaurant.description %></div>
+
+<div><%= @restaurant.category %></div>
+
+<h3>Reviews:</h3>
+<ul>
+  <% @restaurant.reviews.order(created_at: :desc).each do |review| %>
+    <li><%= review.body %></li>
+  <% end %>
+</ul>
+
+<h3>Post a review:</h3>
+<%= form_for [@restaurant, @review] do |f| %>
+  <%= f.label :rating %>
+  <%= f.text_field :rating %><br>
+
+  <%= f.label :body %>
+  <%= f.text_area :body %><br>
+
+  <%= f.submit %>
+<% end %>
